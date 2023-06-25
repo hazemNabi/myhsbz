@@ -1,0 +1,117 @@
+
+{% extends 'test.html'%} {% block page_title %}{% load static %}
+<h3>ادارة المنتجات</h3>
+
+{% endblock page_title %} {% block content %}
+<section class="content">
+    {% if messages %}
+    <div class="form-group">
+        <div class="col-12">
+            {% for message in messages %} {% if message.tags == "error" %}
+            <div class="col-sm-12">
+                <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1 " role="alert" data-brk-library="component__alert">
+                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                        <span aria-hidden="true">
+                            <i class="fa fa-times danger "></i>
+                        </span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+                    <strong class="font__weight-semibold">Oh snap!</strong> {{message}}
+                </div>
+            </div>
+            {% elif message.tags == "success" %}
+            <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1">
+                <button type="button" class="close font__size-18" data-dismiss="alert">
+                                              <span aria-hidden="true">
+                              <i class="fa fa-times greencross"></i>
+                              </a></span>
+                                              <span class="sr-only">Close</span> 
+                                          </button>
+                <i class="start-icon far fa-check-circle faa-tada animated"></i>
+                <strong class="font__weight-semibold">Well done!</strong> {{message}}
+            </div>
+            {% endif %} {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card manage sc">
+                <div class="card-header">
+                    
+                   
+
+                </div>
+                <table class="table table-bordered table-hover dataTable " id="plist">
+                    <thead>
+
+                        <tr>
+                            <th>الرقم</th>
+                            <th>الاسم التجاري</th>
+                            <th>الاسم العلمي</th>
+                           
+                            <th>الوصف</th>
+                            <th>القسم</th>
+                            <th>الكمية</th>
+                            <th>السعر</th>
+                            <th class="text-center">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for manageProdects in manageProdect %}
+                        <tr class="hov">
+                            <td>{{manageProdects.id}}</td>
+                            <td>{{manageProdects.namepasnes}}</td>
+                            <td>{{manageProdects.namescient}}</td>
+                            <!-- <td>{{manageProdects.manufactureCompany}}</td> -->
+                            <td>{{manageProdects.desc}}</td>
+                            <td>{{manageProdects.coustemCatogry}}</td>
+
+                           <td>
+                               <!--   <span class="d-flex justify-content-center">
+                              
+                                <div  class="d-flex justify-content-center px-2 mt-2"style="background-color:#a00b80;border-radius: 10px;font-size: 11px; width:70px;font-weight: 600;color: white;">{{stock.quntity}}</div> -->
+                                {{manageProdects.quntity}}
+                             <!-- </span> -->
+
+                            </td>
+                            
+                             
+                            <td >
+                                {{manageProdects.price}}
+                                <!-- <div style="background-color: rgb(48, 58, 92);border-radius: 10px;font-size: 11px; width:120px;font-weight: 600;color: white;" class="d-flex justify-content-center ml-2 mt-2 px-1 "> EXPIRED </div> -->
+                            </td>
+                           
+                            <!-- <td class="d-flex justify-content-center"> -->
+                               
+                            <!-- </td> -->
+                            <!-- <td>{{manageProdects.Created_at}}</td>
+                            <td>{{manageProdects.dataFinshProdect}}</td> -->
+                            <td class="d-flex justify-content-center">
+                                <a href="{% url 'update_product' manageProdects.id  %}" class="btn btn-sm btn-success">تعديل</a> &nbsp;
+                                <a href="{% url 'delete' manageProdects.id %}" class="btn btn-sm btn-danger">حذف</a> &nbsp;
+                                <a href="{% url 'show_product' manageProdects.id %}" class="btn btn-sm btn-warning">عرض</a>
+                               
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+                <div class="card-tools d-flex">
+                             
+                   
+
+                    <a class="btn btn-sm btn-info mr-2" href="/addprodect" role="button">+ إضافة منتج جديد</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

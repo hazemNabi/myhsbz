@@ -1,0 +1,39 @@
+{% extends "test.html" %}
+
+{% block content %}
+
+
+
+
+
+  <h2>العملاء</h2>
+  <div class="row">
+    <h4  style="background-color: red;text-align: center; width: 200px;height: 50px;border-radius: 5px;margin-right: 20px;text-align: center;">admin</h4>
+    <h4  style="background-color: red;text-align: center; width: 200px;height: 50px;border-radius: 5px;margin-right: 20px;text-align: center;">عميل</h4>
+    <h4  style="background-color: red;text-align: center; width: 200px;height: 50px;border-radius: 5px;margin-right: 20px;text-align: center;">شركات</h4>
+    <h4  style="background-color: red;text-align: center; width: 200px;height: 50px;border-radius: 5px;margin-right: 20px;text-align: center;">صيدليات</h4>
+  </div>
+  <div class="row">
+   
+    {% for item in user_type_summary %}
+      <div class="col-md-4" style="background-color: red;text-align: center; width: 200px;height: 150px;;border-radius: 5px;margin-right: 20px;">
+        <!-- {{ item.TypeUser }} -->
+        <div class="card" style="background-color: yellow; width: 130px;text-align: center;margin-top: 50px;margin-right: 15px;">
+          <!-- <img class="card-img-top" src="#" alt="{{ item.name }}"> -->
+         
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text">{{ item.total_users }}</p>
+            <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+      
+      
+      
+      
+   
+{% endblock %}

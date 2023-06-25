@@ -1,0 +1,35 @@
+{% extends 'test.html' %}
+
+{% block content %}
+
+<div style="direction: rtl;" class="wrapper" >
+
+    <!-- Content Wrapper. Contains page content -->
+    <div   class="content-wrapper">
+      <!-- Content Header (Page header) -->
+  <div  class="card card-danger">
+      <div class="card-header">
+        <h3 class="text-center" class="card-title" >حذف </h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form  method="POST" enctype="multipart/form-data" class="text-center">
+          {% csrf_token %} 
+          <h3>هل تريد حقا الحذف</h3>
+        <div class="row">
+       
+        </div>
+        <!-- /.card-body -->
+  
+        <div class="card-footer">
+          <button type="submit" class="btn btn-danger">حذف</button>
+  
+          <a href="{% url 'manage_prodect' %}" type="button" class="btn btn-primary">تراجع</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  
+
+{% endblock %}

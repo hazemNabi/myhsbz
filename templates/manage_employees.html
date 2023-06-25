@@ -1,0 +1,115 @@
+
+{% extends 'test.html'%} {% block page_title %}
+<h5>ادارة الموظفين</h5>
+
+{% endblock page_title %} {% block content %}
+<section class="content">
+    {% if messages %}
+    <div class="form-group">
+        <div class="col-12">
+            {% for message in messages %} {% if message.tags == "error" %}
+            <div class="col-sm-12">
+                <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1 " role="alert" data-brk-library="component__alert">
+                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                        <span aria-hidden="true">
+                            <i class="fa fa-times danger "></i>
+                        </span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+                    <strong class="font__weight-semibold">Oh snap!</strong> {{message}}
+                </div>
+            </div>
+            {% elif message.tags == "success" %}
+            <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1">
+                <button type="button" class="close font__size-18" data-dismiss="alert">
+                                              <span aria-hidden="true">
+                              <i class="fa fa-times greencross"></i>
+                              </a></span>
+                                              <span class="sr-only">Close</span> 
+                                          </button>
+                <i class="start-icon far fa-check-circle faa-tada animated"></i>
+                <strong class="font__weight-semibold">Well done!</strong> {{message}}
+            </div>
+            {% endif %} {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card manage sc">
+                <div class="card-header">
+                    <span>إدارة الموظفين</span>
+                    <div class="card-tools d-flex">
+                             
+                    <div class="input-group input-group-sm" style="width: 2800px;">
+                       
+                        <!-- <div class="input-group-append">
+                        <button type="submit"  class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div> -->
+                    </div> 
+                       
+                       </div>
+                </div>
+                <table class="table table-bordered table-hover dataTable " id="plist">
+                    <thead>
+
+                        <tr>
+                            <th>الرقم</th>
+                            <th>الاسم </th>
+        
+                           
+                            <th>رقم الموبايل</th>
+                            <th>العنوان</th>
+                            <th>الحالة</th>
+                            
+                            <!-- <th class="text-center">Action</th> -->
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for manageEmployees in manageEmployees %}
+                        <tr class="hov">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{manageEmployees.username}}</td>
+                            <td>{{manageEmployees.PhonNumber}}</td>
+                            <td>{{manageEmployees.address}}</td>
+                            <td>{{manageEmployees.is_active}}</td>
+                            <td>
+                                <form action="{% url 'delete_object' manageEmployees.id %}" method="POST" onsubmit="return confirmDelete()">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                  </form>
+                                  
+                                  <script>
+                                  function confirmDelete() {
+                                    return confirm("هل انت متاكد انك تريد حذف هذه الموظف?");
+                                  }
+                                  </script>
+                            </td>
+                            <td> 
+                              
+                                <a href="{% url 'update_client' manageEmployees.id %}" class="btn btn-sm btn-warning">تعديل</a>
+  
+                        </td>
+                           
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+                
+                
+            </div>
+            <div>
+                <a class="btn btn-sm btn-info mr-2"  class="form-control float-left"  href="/add_employee" role="button">+ إضافة موظف جديد</a>
+
+               </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

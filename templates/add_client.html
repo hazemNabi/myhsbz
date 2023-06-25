@@ -1,0 +1,18 @@
+{% extends 'test.html' %}
+
+{% load widget_tweaks %}
+
+
+{% block content %}
+
+<div class="container">
+
+<form method="POST"  style="font-size:13px;" class='px-3 py-2' enctype="multipart/form-data">
+    {% csrf_token%}
+   
+       
+    {% include 'include/form.html' %}
+    <button type="submit">create new user</button>
+</form>
+</div>
+{%endblock %}
